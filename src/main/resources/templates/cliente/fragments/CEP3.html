@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:data="http://www.thymeleaf.org/extras/data">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+		<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-datepicker.standalone.min.css}"/>
+		
+		<script th:src="@{/javascripts/jquery-3.2.1.min.js}"></script>
+		<script th:src="@{/javascripts/bootstrap.min.js}"></script>
+		<script th:src="@{/javascripts/jquery.mask.min.js}"></script>
+		<script th:src="@{/javascripts/jquery.autocomplete-address.min.js}"></script>
+		<script th:src="@{/javascripts/cliente.mascara-cpf-cnpj.js}"></script>
+		<script th:src="@{/javascripts/bootstrap-datepicker.min.js}"></script>
+        <script th:src="@{/javascripts/bootstrap-datepicker.pt-BR.min.js}"></script>
+		
+		<script>
+			$(function(){
+				
+				$(".my-cep").autocompleteAddress();
+
+			});
+			
+		</script>
+	</head>
+	<body>
+		        <form method="POST"  th:object="${cliente}" th:action="${cliente.novo}? @{/clientes/novo} : @{/clientes/{codigo}(codigo=${cliente.codigo})}">
+			<h2>Dados Pessoais</h2>
+
+			<div class="row"> <!-- 0 -->
+			
+			    <div class="combofisicajuridica col-sm-2" >
+						<th:block>
+					  <label for="tipoPessoa">Pessoa</label>
+					   <select id="cpfcnpj" name="cpfcnpj" th:field="*{tipoPessoa}" class="campo js-combo-tipo-pessoa" >
+	                     <option th:each="tipoPessoa : ${todosTipoPessoa}" th:value="${tipoPessoa}" th:text="${tipoPessoa.descricao}" th:attr="data-documento=${tipoPessoa.documento}, data-mascara=${tipoPessoa.mascara}"></option>        
+	                   </select>
+						</th:block>
+				</div>
+				
+               <div class="col-sm-2 fisicajuridica" >
+					<div>
+						<th:block th:each="tipoPessoa : ${todosTipoPessoa}">
+							<div >
+								<input type="radio" th:id="|id_${tipoPessoa}|" class="js-radio-tipo-pessoa" 
+									name="tipoPessoa" 
+									th:attr="data-documento=${tipoPessoa.documento}, data-mascara=${tipoPessoa.mascara}" th:field="*{tipoPessoa}" th:value="${tipoPessoa}" required="required"/> 
+									
+								<label class="control-label" th:for="|id_${tipoPessoa}|" th:text="${tipoPessoa.descricao}"></label>
+							</div>
+						</th:block>
+					</div>
+				</div>
+				
+            </div>
+
+			<div class="col-sm-12">
+
+                <div class="form-group col-sm-12">
+				<label for="cpfOuCnpj" class="col-sm-1 control-label">CPF/CNPJ</label>
+				<div class="col-sm-2">
+					<input class="form-control my-cpf" id="cpfOuCnpj" disabled="disabled"/>
+				</div>
+				</div>
+
+                <div class="form-group">
+				<label for="my-name" class="col-sm-1 control-label">Nome Completo</label>
+				<div class="col-sm-3">
+					<input class="form-control" id="my-name" placeholder="Nome"/>
+				</div>
+				</div>
+				
+				<div class="form-group">
+				<label for="my-date" class="col-sm-1 control-label">Data Nascimento</label>
+				<div class="col-sm-3">
+					<input class="form-control" id="my-date" 
+					        data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-language="pt-BR"
+							data-date-autoclose="true" data-date-today-highlight="true" data-date-orientation="bottom"/>
+				</div>
+				</div>
+				
+				<div class="form-group">
+				<label for="my-email" class="col-sm-1 control-label">E-mail</label>
+				<div class="col-sm-3">
+					<input class="form-control" id="my-email" placeholder="E-mail"/>
+				</div>
+				</div>
+
+			</div>
+
+			<h2>Meu Endereço</h2>
+			<div class="form-group col-sm-12">
+
+				<label for="my-cep" class="col-sm-1 control-label">CEP</label>
+				<div class="col-sm-2">
+					<input class="form-control my-cep" id="my-cep" placeholder="CEP"/>
+				</div>
+
+				<label for="my-address" class="col-sm-1 control-label">Endereço</label>
+				<div class="col-sm-3">
+					<input class="form-control autocomplete-address" id="my-address" placeholder="Endereço"/>
+				</div>
+
+
+
+				<label for="my-number" class="col-sm-1 control-label">Número</label>
+				<div class="col-sm-2">
+					<input class="form-control" id="my-number" placeholder="Número"/>
+				</div>
+
+			</div>
+			<div class="form-group">
+
+				<label for="my-neighborhood" class="col-sm-1 control-label">Bairro</label>
+				<div class="col-sm-4">
+					<input class="form-control autocomplete-neighborhood" id="my-neighborhood" placeholder="Bairro"/>
+				</div>
+
+				<label for="my-complement" class="col-sm-1 control-label">Complemento</label>
+				<div class="col-sm-3">
+					<input class="form-control" id="my-complement" placeholder="Complemento"/>
+				</div>
+
+
+			</div>
+			<div class="form-group">
+
+				<label for="my-reference" class="col-sm-1 control-label">Ponto de referência</label>
+				<div class="col-sm-3">
+					<input class="form-control" id="my-reference" placeholder="Ponto de referência"/>
+				</div>
+
+				<label for="state" class="col-sm-1 control-label">Estado</label>
+				<div class="col-sm-2">
+					<select class="form-control autocomplete-state" id="state">
+						<option>Selecione</option>
+						<option>AC</option>
+						<option>AL</option>
+						<option>AP</option>
+						<option>AM</option>
+						<option>BA</option>
+                        <option>CE</option>
+                        <option>DF</option>
+                        <option>ES</option>
+                        <option>GO</option>
+                        <option>MA</option>
+                        <option>MT</option>
+                        <option>MS</option>
+                        <option>MG</option>
+                        <option>PA</option>
+                        <option>PB</option>
+						<option>PR</option>
+						<option>PE</option>
+						<option>PI</option>
+						<option>RJ</option>
+						<option>RN</option>
+						<option>RS</option>
+						<option>RO</option>
+						<option>RR</option>
+						<option>SC</option>
+						<option>SP</option>
+						<option>SE</option>
+						<option>TO</option>
+					</select>
+				</div>
+
+				<label for="city" class="col-sm-1 control-label">Cidade</label>
+				<div class="col-sm-3">
+					<input class="form-control autocomplete-city" id="city" placeholder="Cidade"/>
+				</div>
+
+			</div>
+
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="reset" class="btn btn-danger">Limpar</button>
+					<button type="submit" class="btn btn-primary">Salvar</button>
+				</div>
+			</div>
+		</form>
+	</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	layout:decorator="'layout/LayoutPadrao'">
+<head>
+<title>Cadastro de Fornecedor</title>
+</head>
+<body>
+
+	<section class="layout-assinatura" layout:fragment="conteudo">
+		<main class="layout-assinatura">
+
+		<div class="container">
+            <th:block th:include="fragments/MensagemSucesso"></th:block>
+			<form action="#" method="post">
+				<h1 class="titulo-formulario">Cadastro Fornecedores</h1>
+
+
+				<div class="container" style="padding: 20px 0px">
+
+					<table class="tabela">
+						<thead>
+							<tr>
+								<th>Codigo</th>
+								<th>Nome</th>
+								<th>Contato</th>
+								<th>Endereço</th>
+								<th>Telefone1</th>
+								<th>Telefone2</th>
+								<th style="padding:0px 70px 0px 0px"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="fornecedor : ${todosFornecedores}">
+								
+								<td th:text="${fornecedor.codigo}" class="text-center"></td>
+     							<td th:text="${fornecedor.nome}"></td>
+								<td th:text="${fornecedor.endereco}"></td>
+								<td th:text="${fornecedor.contato}"></td>
+								<td th:text="${fornecedor.telefone1}"></td>
+								<td th:text="${fornecedor.telefone2}"></td>
+
+								
+								<td class="text-center"><a class="btn btn-link btn-xs"
+									title="Editar" rel="tooltip" data-toggle="modal"
+									data-target="#modalEditarFornecedor"
+									th:attr="data-codigo=${fornecedor.codigo}, 
+									data-nome=${fornecedor.nome},
+									data-contato=${fornecedor.contato},
+									data-endereco=${fornecedor.endereco},
+									data-cidade=${fornecedor.cidade},
+									data-bairro=${fornecedor.bairro},
+									data-uf=${fornecedor.uf},
+									data-cep=${fornecedor.cep},
+									data-telefone1=${fornecedor.telefone1},
+									data-telefone2=${fornecedor.telefone2},
+									data-email=${fornecedor.email},
+									data-cnpj=${fornecedor.cnpj},
+									data-ie=${fornecedor.ie},
+									data-banco=${fornecedor.banco},
+									data-agencia=${fornecedor.agencia},
+									data-conta=${fornecedor.conta},
+									data-clienteativo=${fornecedor.clienteAtivo},
+									data-datacadastro=${fornecedor.dataCadastro}">
+									
+									
+									
+									<span class="glyphicon glyphicon-pencil text-warning"></span></a> <a
+									class="btn btn-link btn-xs" data-toggle="modal"
+									data-target="#exclusaoModal" title="Excluir" rel="tooltip"
+									th:attr="data-codigo=${fornecedor.codigo}, data-descricao=${fornecedor.nome}"><span
+										class="glyphicon glyphicon-trash text-danger"></span></a></td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+			</form>
+
+			<footer class="row pen">
+
+				<div class="col-sm-8">
+					<button class="btn btn-primary" data-toggle="modal"
+						data-target="#NovaS">Novo</button>
+				</div>
+
+				<div class="col-sm-4">
+					<div class="input-group">
+						<input type="text" name="busca" class="form-control"
+							placeholder="Pesquisar por nome" /> <span
+							class="input-group-btn">
+							<button type="button" class="btn btn-default">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</span>
+					</div>
+				</div>
+			</footer>
+
+		</div>
+		</main>
+		<th:block th:include="fornecedor/fragments/ModalEditar"></th:block>
+		<th:block th:include="fornecedor/fragments/ModalNovo"></th:block>
+		<th:block th:include="fornecedor/fragments/ModalExcluir"></th:block>
+	</section>
+</body>
+
+</html>
