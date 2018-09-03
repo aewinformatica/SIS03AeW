@@ -1,6 +1,6 @@
-var Sis03 = Sis03 || {};
+var Aew = Aew || {};
 
-Sis03.MascaraComboCpfCnpj = (function() {
+Aew.MascaraComboCpfCnpj = (function() {
 	
 	function MascaraComboCpfCnpj() {
 		this.comboTipoPessoa = $('.js-combo-tipo-pessoa');
@@ -10,22 +10,23 @@ Sis03.MascaraComboCpfCnpj = (function() {
 	
 	MascaraComboCpfCnpj.prototype.iniciar = function() {
 		this.comboTipoPessoa.on('change', onTipoPessoaAlterado.bind(this));
-//		var tipoPessoaSelecionada = this.comboTipoPessoa.val();
-		var tipoPessoaSelecionada = 'FISICA';
+		var tipoPessoaSelecionada = this.comboTipoPessoa.find(":selected").val();
+		
 		if (tipoPessoaSelecionada) {
 			aplicarMascara.call(this, $(tipoPessoaSelecionada));
 		}
 	}
 	
 	function onTipoPessoaAlterado(evento) {
-		var tipoPessoaSelecionada = $(evento.currentTarget);
+		var tipoPessoaSelecionada = this.comboTipoPessoa.find(":selected").val();
 		aplicarMascara.call(this, tipoPessoaSelecionada);
 		this.inputCpfCnpj.val('');
+
 	}
 	
 	function aplicarMascara(tipoPessoaSelecionada) {
-		this.labelCpfCnpj.text(tipoPessoaSelecionada.data('documento'));
-		this.inputCpfCnpj.mask(tipoPessoaSelecionada.data('mascara'));
+		this.labelCpfCnpj.text($('.js-combo-tipo-pessoa :selected').data('documento'));		
+		this.inputCpfCnpj.mask($('.js-combo-tipo-pessoa :selected').data('mascara'));
 		this.inputCpfCnpj.removeAttr('disabled');
 	}
 	
@@ -34,6 +35,6 @@ Sis03.MascaraComboCpfCnpj = (function() {
 }());
 
 $(function() {
-	var mascaraComboCpfCnpj = new Sis03.MascaraComboCpfCnpj();
+	var mascaraComboCpfCnpj = new Aew.MascaraComboCpfCnpj();
 	mascaraComboCpfCnpj.iniciar();
 });

@@ -1,4 +1,4 @@
-package br.com.wmsoft.sis03.model;
+ package br.com.wmsoft.sis03.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

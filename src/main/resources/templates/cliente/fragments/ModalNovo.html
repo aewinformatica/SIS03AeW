@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:data="http://www.thymeleaf.org/extras/data">
 	
@@ -23,12 +24,13 @@
              
              
                  <div class="combofisicajuridica col-sm-2" >
-						<th:block>
 					  <label for="tipoPessoa">Pessoa</label>
 					   <select id="cpfcnpj" name="cpfcnpj" th:field="*{tipoPessoa}" class="campo js-combo-tipo-pessoa" >
-	                     <option th:each="tipoPessoa : ${todosTipoPessoa}" th:value="${tipoPessoa}" th:text="${tipoPessoa.descricao}" th:attr="data-documento=${tipoPessoa.documento}, data-mascara=${tipoPessoa.mascara}"></option>        
+	                     <option th:each="tipoPessoa : ${todosTipoPessoa}" th:id="|id_${tipoPessoa}|"
+	                             th:value="${tipoPessoa}" th:text="${tipoPessoa.descricao}" 
+	                             data:documento="${tipoPessoa.documento}" data:mascara="${tipoPessoa.mascara}">
+	                     </option>        
 	                   </select>
-						</th:block>
 				</div>
              
                <div class="radiofisicajuridica" >
@@ -37,7 +39,8 @@
 							<div >
 								<input type="radio" th:id="|id_${tipoPessoa}|" class="js-radio-tipo-pessoa" 
 									name="tipoPessoa" 
-									th:attr="data-documento=${tipoPessoa.documento}, data-mascara=${tipoPessoa.mascara}" th:field="*{tipoPessoa}" th:value="${tipoPessoa}" required="required"/> 
+									th:attr="data-documento=${tipoPessoa.documento}, data-mascara=${tipoPessoa.mascara}" 
+									th:field="*{tipoPessoa}" th:value="${tipoPessoa}" required="required"/> 
 								<label class="control-label" th:for="|id_${tipoPessoa}|" th:text="${tipoPessoa.descricao}"></label>
 							</div>
 						</th:block>
