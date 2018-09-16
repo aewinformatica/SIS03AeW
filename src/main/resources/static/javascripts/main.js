@@ -320,3 +320,9 @@ $('#modalEditarTransportadora').on('show.bs.modal', function(event) {
 jQuery(document).ready(function(){
 	$('[rel="tooltip"').tooltip();
 });
+
+$(function(){
+	
+	$(".my-cep").autocompleteAddress();
+
+});

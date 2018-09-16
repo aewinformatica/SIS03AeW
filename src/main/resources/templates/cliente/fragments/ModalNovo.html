@@ -33,90 +33,89 @@
 	                   </select>
 				</div>
              
-               <div class="radiofisicajuridica" >
-					<div>
-						<th:block th:each="tipoPessoa : ${todosTipoPessoa}">
-							<div >
-								<input type="radio" th:id="|id_${tipoPessoa}|" class="js-radio-tipo-pessoa" 
-									name="tipoPessoa" 
-									th:attr="data-documento=${tipoPessoa.documento}, data-mascara=${tipoPessoa.mascara}" 
-									th:field="*{tipoPessoa}" th:value="${tipoPessoa}" required="required"/> 
-								<label class="control-label" th:for="|id_${tipoPessoa}|" th:text="${tipoPessoa.descricao}"></label>
-							</div>
-						</th:block>
-					</div>
-				</div>
+<!--                <div class="radiofisicajuridica" > -->
+<!-- 					<div> -->
+<!-- 						<th:block th:each="tipoPessoa : ${todosTipoPessoa}"> -->
+<!-- 							<div > -->
+<!-- 								<input type="radio" th:id="|id_${tipoPessoa}|" class="js-radio-tipo-pessoa"  -->
+<!-- 									name="tipoPessoa"  -->
+<!-- 									th:attr="data-documento=${tipoPessoa.documento}, data-mascara=${tipoPessoa.mascara}"  -->
+<!-- 									th:field="*{tipoPessoa}" th:value="${tipoPessoa}" required="required"/>  -->
+<!-- 								<label class="control-label" th:for="|id_${tipoPessoa}|" th:text="${tipoPessoa.descricao}"></label> -->
+<!-- 							</div> -->
+<!-- 						</th:block> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 				
 
 				
 				
-	             <div class="grupo-entrada col-sm-4">
+	             <div class="grupo-entrada col-sm-1">
 		        <label for="cpfOuCnpj" class="control-label">CPF/CNPJ</label>
-				<input type="text" class="form-control" id="cpfOuCnpj" th:field="*{cpfOuCnpj}" disabled="disabled" required="required"/>
+				<input type="text" class="form-control campo" id="cpfOuCnpj" th:field="*{cpfOuCnpj}" disabled="disabled" required="required"/>
                 </div>
+                
+         	    <div class="col-sm-2">
+              <div class="grupo-entrada">
+                <label for="data-nascimento">Datada Nascimento</label>
+                <input id="data-nascimento" th:field="*{dataNascimento}" type="text" class="campo" required="required" />
+              </div>                  
+                 </div>  
                 
               <div class="row"> <!-- 1-->
 	             
-	             <div class="col-sm-5">
+	             <div class="col-sm-3">
 	                   <div class="grupo-entrada">
-	                     <label for="nome">nome</label>
+	                     <label for="nome">Nome</label>
 	                     <input id="nome" th:field="*{nome}" type="text" class="campo" required="required" maxlength="50"  />
 	                   </div>
 	             </div>
-	               <div class="col-sm-4">
-                      <div class="grupo-entrada">
-                        <label for="endereco">Endereço</label>
-                        <input id="endereco" th:field="*{endereco}" type="text" class="campo"  maxlength="50" />
-                   </div>
-                </div> 
-                 <div class="col-sm-3">
-                  <div class="grupo-entrada">
-                    <label for="cidade">Cidade</label>
-                    <input id="cidade" th:field="*{cidade}" type="text" class="campo" maxlength="35"/>
-                  </div>
+	             	    <div class="col-sm-2">
+		                <div class="grupo-entrada">
+		                  <label for="email">E-mail</label>
+		                  <input id="email" th:field="*{email}" type="email" class="campo"  />
+		                </div>
+                  </div> 
+	    
               </div>
 	             
-	             
 	          </div>  
-	          <div class="row"> <!-- 2-->
-<!-- 	             <div class="col-sm-4"> -->
-<!--                     <div class="grupo-entrada"> -->
-<!--                        <label for="bairro">Bairro</label> -->
-<!--                        <input id="bairro" th:field="*{bairro}" type="text" class="autocomplete-neighborhood" maxlength="40" /> -->
-<!--                     </div> -->
-<!--                  </div> -->
-	         
               
 	              <div class="col-sm-2">
+	                  <div class="grupo-entrada">
+	                    <label for="my-cep">CEP</label>
+	                    <input name="my-cep" id="my-cep" th:field="*{cep}" type="text" class="campo my-cep" />
+	                  </div>   
+	             </div>
+	             <div class="col-sm-2">
+                      <div class="grupo-entrada">
+                        <label for="endereco">Endereço</label>
+                        <input id="endereco" th:field="*{endereco}" type="text" class="autocomplete-address campo"  maxlength="50" />
+                   </div>
+                </div> 
+                     <div class="row"> <!-- 2-->
+	             <div class="col-sm-2">
+                    <div class="grupo-entrada">
+                       <label for="bairro">Bairro</label>
+                       <input id="bairro" th:field="*{bairro}" type="text" class="autocomplete-neighborhood campo" maxlength="40" />
+                    </div>
+                 </div>
+                  <div class="col-sm-2">
 	                 <div class="grupo-entrada">
-	                   <label for="uf">Estado</label>
-	                   <select id="uf" name="uf" th:field="*{uf}" class="campo">
+	                   <label for="uf">UF</label>
+	                   <select id="uf" name="uf" th:field="*{uf}" class="autocomplete-state campo">
 	                     <option th:value="${uf}" th:text="Selecione"></option>
 	                     <option th:each="uf : ${todosUF}" th:value="${uf}" th:text="${uf.descricao}"></option>
 	                     
 	                   </select>
 	                 </div>
 	              </div>
-              
-	              <div class="col-sm-2">
-	                  <div class="grupo-entrada">
-	                    <label for="my-cep">CEP</label>
-	                    <input name="my-cep" id="my-cep" th:field="*{cep}" type="text" class="campo" />
-	                  </div>   
-	             </div>
-	             	<div class="col-sm-4">
-                    <div class="grupo-entrada">
-                       <label for="bairro">Bairro</label>
-                       <input id="bairro" th:field="*{bairro}" type="text" class="autocomplete-neighborhood" maxlength="40" />
-                    </div>
-                    
-                 </div>
-	              <div class="col-sm-4">
-		                <div class="grupo-entrada">
-		                  <label for="email">E-mail</label>
-		                  <input id="email" th:field="*{email}" type="email" class="campo"  />
-		                </div>
-                  </div> 
+                 <div class="col-sm-2">
+                  <div class="grupo-entrada">
+                    <label for="cidade">Cidade</label>
+                    <input id="cidade" th:field="*{cidade}" type="text" class="autocomplete-city campo" maxlength="35"/>
+                  </div>
+
             
 	          </div>
 	          
@@ -149,12 +148,6 @@
 			                   <input id="profissao" th:field="*{profissao}" type="text" class="campo" />
 			               </div>
 			            </div> 
-			            <div class="col-sm-2">
-		                   <div class="grupo-entrada">
-		                     <label for="data-nascimento">Datada Nascimento</label>
-		                     <input id="data-nascimento" th:field="*{dataNascimento}" type="date" class="campo" required="required" />
-		                   </div>                  
-                        </div>  
                         <div class="col-sm-3">
 		                   <div class="grupo-entrada">
 		                     <label for="pai">Pai</label>

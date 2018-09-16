@@ -12,6 +12,7 @@
 		<script th:src="@{/javascripts/jquery.mask.min.js}"></script>
 		<script th:src="@{/javascripts/jquery.autocomplete-address.min.js}"></script>
 		<script th:src="@{/javascripts/cliente.mascara-cpf-cnpj.js}"></script>
+		<script th:src="@{/javascripts/cliente.combo-cpf-cnpj.js}"></script>
 		<script th:src="@{/javascripts/bootstrap-datepicker.min.js}"></script>
         <script th:src="@{/javascripts/bootstrap-datepicker.pt-BR.min.js}"></script>
 		
@@ -30,13 +31,14 @@
 
 			<div class="row"> <!-- 0 -->
 			
-			    <div class="combofisicajuridica col-sm-2" >
-						<th:block>
-					  <label for="tipoPessoa">Pessoa</label>
-					   <select id="cpfcnpj" name="cpfcnpj" th:field="*{tipoPessoa}" class="campo js-combo-tipo-pessoa" >
-	                     <option th:each="tipoPessoa : ${todosTipoPessoa}" th:value="${tipoPessoa}" th:text="${tipoPessoa.descricao}" th:attr="data-documento=${tipoPessoa.documento}, data-mascara=${tipoPessoa.mascara}"></option>        
+                 <div class="combofisicajuridica col-sm-1" >
+					  <label for="tipoPessoa" class="control-label">Pessoa</label>
+					   <select id="cpfcnpj" name="cpfcnpj" th:field="*{tipoPessoa}" class="form-control campo js-combo-tipo-pessoa" >
+	                     <option th:each="tipoPessoa : ${todosTipoPessoa}" th:id="|id_${tipoPessoa}|"
+	                             th:value="${tipoPessoa}" th:text="${tipoPessoa.descricao}" 
+	                             data:documento="${tipoPessoa.documento}" data:mascara="${tipoPessoa.mascara}">
+	                     </option>        
 	                   </select>
-						</th:block>
 				</div>
 				
                <div class="col-sm-2 fisicajuridica" >
