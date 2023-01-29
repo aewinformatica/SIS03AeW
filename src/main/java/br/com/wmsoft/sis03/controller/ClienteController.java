@@ -29,7 +29,7 @@ import br.com.wmsoft.sis03.service.CadastroClienteService;
 public class ClienteController {
 
 private static final String HOME_VIEW = "cliente/Cliente";
-private static final String TEMP_VIEW = "cliente/fragments/CEP3";
+//private static final String TEMP_VIEW = "cliente/fragments/CEP3";
 	
 @Autowired   
 Clientes clientes;
@@ -57,8 +57,8 @@ public String excluir (@PathVariable Long codigo, RedirectAttributes attributes)
 public ModelAndView novo(Cliente cliente){
 	
 
-//	ModelAndView mv = new ModelAndView( HOME_VIEW);
-	ModelAndView mv = new ModelAndView( TEMP_VIEW);
+	ModelAndView mv = new ModelAndView( HOME_VIEW);
+//	ModelAndView mv = new ModelAndView( TEMP_VIEW);
 	
 	return mv;
 }

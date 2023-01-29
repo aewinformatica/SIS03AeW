@@ -48,7 +48,7 @@ public class Cliente {
 	private String mae;
 	private String referencia1;
 	private String referencia2;
-	private Date dataCadastro;
+	private Date dataCadastro = new Date(System.currentTimeMillis());
 	
 	@Enumerated(EnumType.STRING)
 	private ClienteAtivo clienteAtivo;

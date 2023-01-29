@@ -25,7 +25,7 @@
              
                  <div class="combofisicajuridica col-sm-2" >
 					  <label for="tipoPessoa">Pessoa</label>
-					   <select id="cpfcnpj" name="cpfcnpj" th:field="*{tipoPessoa}" class="campo js-combo-tipo-pessoa" >
+					   <select id="cpfcnpj" name="cpfcnpj" th:field="*{tipoPessoa}" class="campo js-combo-tipo-pessoa">
 	                     <option th:each="tipoPessoa : ${todosTipoPessoa}" th:id="|id_${tipoPessoa}|"
 	                             th:value="${tipoPessoa}" th:text="${tipoPessoa.descricao}" 
 	                             data:documento="${tipoPessoa.documento}" data:mascara="${tipoPessoa.mascara}">
@@ -52,13 +52,13 @@
 				
 	             <div class="grupo-entrada col-sm-1">
 		        <label for="cpfOuCnpj" class="control-label">CPF/CNPJ</label>
-				<input type="text" class="form-control campo" id="cpfOuCnpj" th:field="*{cpfOuCnpj}" disabled="disabled" required="required"/>
+				<input type="text" class="form-control campo" id="cpfOuCnpj" th:field="*{cpfOuCnpj}" disabled="disabled" required="required" >
                 </div>
                 
          	    <div class="col-sm-2">
               <div class="grupo-entrada">
                 <label for="data-nascimento">Datada Nascimento</label>
-                <input id="data-nascimento" th:field="*{dataNascimento}" type="text" class="campo" required="required" />
+                <input id="data-nascimento" th:field="*{dataNascimento}" type="date" class="campo" required="required" />
               </div>                  
                  </div>  
                 
